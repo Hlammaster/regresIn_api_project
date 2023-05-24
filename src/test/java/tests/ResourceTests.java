@@ -3,16 +3,17 @@ package tests;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
+import static io.restassured.RestAssured.requestSpecification;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.Matchers.is;
+import static specs.Specs.requestSpec;
 
 public class ResourceTests {
     @Test
     void getUsersListTest() {
-        given()
-                .log().uri()
+        given(requestSpec)
                 .when()
-                .get("https://reqres.in/api/users?page=2")
+                .get("/users?page=2")
                 .then()
                 .log().status()
                 .log().body()
@@ -24,10 +25,9 @@ public class ResourceTests {
 
     @Test
     void getSingleUserTest() {
-        given()
-                .log().uri()
+        given(requestSpec)
                 .when()
-                .get("https://reqres.in/api/users/2")
+                .get("/users/2")
                 .then()
                 .log().status()
                 .log().body()
@@ -39,10 +39,10 @@ public class ResourceTests {
 
     @Test
     void getSingleUserNotFoundTest() {
-        given()
+        given(requestSpec)
                 .log().uri()
                 .when()
-                .get("https://reqres.in/api/users/23")
+                .get("/users/23")
                 .then()
                 .log().status()
                 .log().body()

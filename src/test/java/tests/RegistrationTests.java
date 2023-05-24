@@ -2,8 +2,11 @@ package tests;
 
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.Test;
+
 import static io.restassured.RestAssured.given;
+import static io.restassured.RestAssured.requestSpecification;
 import static org.hamcrest.Matchers.is;
+import static specs.Specs.requestSpec;
 
 public class RegistrationTests {
 
@@ -11,12 +14,10 @@ public class RegistrationTests {
     void successfulRegistrationTest() {
         String body = "{ \"email\": \"eve.holt@reqres.in\",\"password\": \"pistol\" }";
 
-        given()
-                .log().uri()
+        given(requestSpec)
                 .body(body)
-                .contentType(ContentType.JSON)
                 .when()
-                .post("https://reqres.in/api/register")
+                .post("/register")
                 .then()
                 .log().status()
                 .log().body()
@@ -31,12 +32,10 @@ public class RegistrationTests {
     void unsuccessfulRegistrationTest() {
         String body = "{ \"email\": \"sydney@fife\" }";
 
-        given()
-                .log().uri()
+        given(requestSpec)
                 .body(body)
-                .contentType(ContentType.JSON)
                 .when()
-                .post("https://reqres.in/api/register")
+                .post("/register")
                 .then()
                 .log().status()
                 .log().body()

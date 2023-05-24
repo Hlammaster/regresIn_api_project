@@ -4,19 +4,19 @@ import io.restassured.http.ContentType;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
+import static io.restassured.RestAssured.requestSpecification;
 import static org.hamcrest.Matchers.is;
+import static specs.Specs.requestSpec;
 
 public class UserTests {
     @Test
     void createUserTest() {
         String body = "{ \"name\": \"morpheus\", \"job\": \"leader\" }";
 
-        given()
-                .log().uri()
+        given(requestSpec)
                 .body(body)
-                .contentType(ContentType.JSON)
                 .when()
-                .post("https://reqres.in/api/users")
+                .post("/users")
                 .then()
                 .log().status()
                 .log().body()
@@ -30,13 +30,10 @@ public class UserTests {
     void updateUserAccountTest() {
         String body = "{ \"name\": \"morpheus\", \"job\": \"zion resident\" }";
 
-        given()
-                .log().uri()
-                .log().body()
+        given(requestSpec)
                 .body(body)
-                .contentType(ContentType.JSON)
                 .when()
-                .patch("https://reqres.in/api/users/2")
+                .patch("/users/2")
                 .then()
                 .log().status()
                 .log().body()
@@ -49,10 +46,9 @@ public class UserTests {
     @Test
     void deleteUserTest() {
 
-        given()
-                .log().uri()
+        given(requestSpec)
                 .when()
-                .delete("https://reqres.in/api/users/2")
+                .delete("/users/2")
                 .then()
                 .log().all()
                 .statusCode(204);
