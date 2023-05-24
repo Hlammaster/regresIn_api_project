@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import static io.restassured.RestAssured.given;
 import static io.restassured.RestAssured.requestSpecification;
 import static org.hamcrest.Matchers.is;
-import static specs.Specs.requestSpec;
+import static specs.Specs.*;
 
 public class RegistrationTests {
 
@@ -21,9 +21,7 @@ public class RegistrationTests {
                 .when()
                 .post("/register")
                 .then()
-                .log().status()
-                .log().body()
-                .statusCode(200)
+                .spec(response200)
                 .body("id", is(4))
                 .body("token", is("QpwL5tke4Pnpja7X4"));
 
@@ -39,9 +37,7 @@ public class RegistrationTests {
                 .when()
                 .post("/register")
                 .then()
-                .log().status()
-                .log().body()
-                .statusCode(400)
+                .spec(response400)
                 .body("error", is("Missing password"));
 
     }

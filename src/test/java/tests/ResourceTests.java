@@ -6,7 +6,7 @@ import static io.restassured.RestAssured.given;
 import static io.restassured.RestAssured.requestSpecification;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.Matchers.is;
-import static specs.Specs.requestSpec;
+import static specs.Specs.*;
 
 public class ResourceTests {
     @Test
@@ -15,9 +15,7 @@ public class ResourceTests {
                 .when()
                 .get("/users?page=2")
                 .then()
-                .log().status()
-                .log().body()
-                .statusCode(200)
+                .spec(response200)
                 .body(matchesJsonSchemaInClasspath("schemes/status-scheme-responce.json"));
 
 
@@ -29,9 +27,7 @@ public class ResourceTests {
                 .when()
                 .get("/users/2")
                 .then()
-                .log().status()
-                .log().body()
-                .statusCode(200)
+                .spec(response200)
                 .body(matchesJsonSchemaInClasspath("schemes/status-singleuser-response.json"));
 
 
@@ -44,9 +40,7 @@ public class ResourceTests {
                 .when()
                 .get("/users/23")
                 .then()
-                .log().status()
-                .log().body()
-                .statusCode(404);
+                .spec(response404);
 
 
     }

@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import static io.restassured.RestAssured.given;
 import static io.restassured.RestAssured.requestSpecification;
 import static org.hamcrest.Matchers.is;
-import static specs.Specs.requestSpec;
+import static specs.Specs.*;
 
 public class UserTests {
     @Test
@@ -20,9 +20,7 @@ public class UserTests {
                 .when()
                 .post("/users")
                 .then()
-                .log().status()
-                .log().body()
-                .statusCode(201)
+                .spec(response201)
                 .body("name", is("morpheus"))
                 .body("job", is("leader"));
 
@@ -38,9 +36,7 @@ public class UserTests {
                 .when()
                 .patch("/users/2")
                 .then()
-                .log().status()
-                .log().body()
-                .statusCode(200)
+                .spec(response200)
                 .body("name", is("morpheus"))
                 .body("job", is("zion resident"));
 
@@ -53,8 +49,7 @@ public class UserTests {
                 .when()
                 .delete("/users/2")
                 .then()
-                .log().all()
-                .statusCode(204);
+                .spec(response204));
 
 
 
