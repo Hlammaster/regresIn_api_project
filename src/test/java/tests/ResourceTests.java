@@ -1,4 +1,5 @@
-import org.hamcrest.Matchers;
+package tests;
+
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
@@ -16,7 +17,7 @@ public class ResourceTests {
                 .log().status()
                 .log().body()
                 .statusCode(200)
-                .body(matchesJsonSchemaInClasspath("status-scheme-responce.json"));
+                .body(matchesJsonSchemaInClasspath("schemes/status-scheme-responce.json"));
 
 
     }
@@ -31,7 +32,7 @@ public class ResourceTests {
                 .log().status()
                 .log().body()
                 .statusCode(200)
-                .body(matchesJsonSchemaInClasspath("status-singleuser-response.json"));
+                .body(matchesJsonSchemaInClasspath("schemes/status-singleuser-response.json"));
 
 
     }

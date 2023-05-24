@@ -1,19 +1,21 @@
+package tests;
+
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
+import static io.restassured.RestAssured.requestSpecification;
 import static org.hamcrest.Matchers.is;
+import static specs.Specs.requestSpec;
 
 public class LoginTests {
     @Test
     void successfulLogin(){
         String body = "{ \"email\": \"eve.holt@reqres.in\", \"password\" : \"cityslicka\"}";
-        given()
-                .log().uri()
+        given(requestSpec)
                 .body(body)
-                .contentType(ContentType.JSON)
                 .when()
-                .post("https://reqres.in/api/login")
+                .post("/login")
                 .then()
                 .log().status()
                 .log().body()
@@ -23,12 +25,10 @@ public class LoginTests {
     @Test
     void unsuccessfulLogin(){
         String body = "{     \"email\": \"peter@klaven\" }";
-        given()
-                .log().uri()
+        given(requestSpec)
                 .body(body)
-                .contentType(ContentType.JSON)
                 .when()
-                .post("https://reqres.in/api/login")
+                .post("/login")
                 .then()
                 .log().status()
                 .log().body()
