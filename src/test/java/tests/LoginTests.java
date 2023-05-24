@@ -1,6 +1,7 @@
 package tests;
 
 import io.restassured.http.ContentType;
+import models.UserModel;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
@@ -11,9 +12,11 @@ import static specs.Specs.requestSpec;
 public class LoginTests {
     @Test
     void successfulLogin(){
-        String body = "{ \"email\": \"eve.holt@reqres.in\", \"password\" : \"cityslicka\"}";
+        UserModel userModel = new UserModel();
+        userModel.setEmail("eve.holt@reqres.in");
+        userModel.setPassword("cityslicka");
         given(requestSpec)
-                .body(body)
+                .body(userModel)
                 .when()
                 .post("/login")
                 .then()
@@ -24,9 +27,11 @@ public class LoginTests {
     }
     @Test
     void unsuccessfulLogin(){
-        String body = "{     \"email\": \"peter@klaven\" }";
+
+        UserModel userModel = new UserModel();
+        userModel.setEmail("peter@klaven");
         given(requestSpec)
-                .body(body)
+                .body(userModel)
                 .when()
                 .post("/login")
                 .then()
