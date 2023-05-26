@@ -10,7 +10,10 @@ import org.junit.jupiter.api.Test;
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.Assertions.assertThat;
+import static specs.Endpoints.USER_LIST;
+import static specs.Endpoints.USER_NOT_FOUND;
 import static specs.Specs.*;
+
 @Owner("Evgenii Goncharov")
 @Epic("Api test")
 @Feature("Resource tests")
@@ -18,15 +21,15 @@ public class ResourceTests {
     @Test
     @DisplayName("Запрос списка пользователей")
     void getUsersListTest() {
-        ResponseDataModel response =   step("Make request", () ->
+        ResponseDataModel response = step("Make request", () ->
                 given(requestSpec)
                         .when()
-                        .get("/users?page=2")
+                        .get(USER_LIST)
                         .then()
                         .spec(response200)
                         .extract().as(ResponseDataModel.class));
         step("Verify response", () ->
-        assertThat(response.getData().get(0).getLastName().equals("Lawson")));
+                assertThat(response.getData().get(0).getLastName().equals("Lawson")));
         assertThat(response.getData().get(1).getLastName().equals("Ferguson"));
         assertThat(response.getData().get(2).getLastName().equals("Funke"));
 
@@ -38,12 +41,12 @@ public class ResourceTests {
     @DisplayName("Пользователь не найден")
     void getSingleUserNotFoundTest() {
         step("Make request", () ->
-        given(requestSpec)
-                .log().uri()
-                .when()
-                .get("/users/23")
-                .then()
-                .spec(response404));
+                given(requestSpec)
+                        .log().uri()
+                        .when()
+                        .get(USER_NOT_FOUND)
+                        .then()
+                        .spec(response404));
 
 
     }

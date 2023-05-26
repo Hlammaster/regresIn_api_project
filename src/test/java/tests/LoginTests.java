@@ -12,7 +12,9 @@ import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.is;
+import static specs.Endpoints.LOGIN;
 import static specs.Specs.*;
+
 @Owner("Evgenii Goncharov")
 @Epic("Api test")
 @Feature("Login tests")
@@ -23,16 +25,16 @@ public class LoginTests {
         UserModel userModel = new UserModel();
         userModel.setEmail("eve.holt@reqres.in");
         userModel.setPassword("cityslicka");
-        ResponseModel response =   step("Make request", () ->
+        ResponseModel response = step("Make request", () ->
                 given(requestSpec)
                         .body(userModel)
                         .when()
-                        .post("/login")
+                        .post(LOGIN)
                         .then()
                         .spec(response200)
                         .extract().as(ResponseModel.class));
         step("Verify response", () ->
-        assertThat(response.getToken()).isEqualTo("QpwL5tke4Pnpja7X4"));
+                assertThat(response.getToken()).isEqualTo("QpwL5tke4Pnpja7X4"));
     }
 
     @Test
@@ -42,12 +44,12 @@ public class LoginTests {
         UserModel userModel = new UserModel();
         userModel.setEmail("peter@klaven");
         step("Make request", () ->
-        given(requestSpec)
-                .body(userModel)
-                .when()
-                .post("/login")
-                .then()
-                .spec(response400))
+                given(requestSpec)
+                        .body(userModel)
+                        .when()
+                        .post(LOGIN)
+                        .then()
+                        .spec(response400))
                 .body("error", is("Missing password"));
     }
 }

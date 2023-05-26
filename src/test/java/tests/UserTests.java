@@ -11,7 +11,10 @@ import org.junit.jupiter.api.Test;
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.Assertions.assertThat;
+import static specs.Endpoints.CREATE_USER;
+import static specs.Endpoints.UPDATE_USER;
 import static specs.Specs.*;
+
 @Owner("Evgenii Goncharov")
 @Epic("Api test")
 @Feature("User tests")
@@ -26,7 +29,7 @@ public class UserTests {
                 given(requestSpec)
                         .body(userModel)
                         .when()
-                        .post("/users")
+                        .post(CREATE_USER)
                         .then()
                         .spec(response201)
                         .extract().as(UserResponseModel.class));
@@ -47,7 +50,7 @@ public class UserTests {
                 given(requestSpec)
                         .body(userModel)
                         .when()
-                        .patch("/users/2")
+                        .patch(UPDATE_USER)
                         .then()
                         .spec(response200)
                         .extract().as(UserResponseModel.class));
@@ -64,7 +67,7 @@ public class UserTests {
         step("Make request", () ->
                 given(requestSpec)
                         .when()
-                        .delete("/users/2")
+                        .delete(UPDATE_USER)
                         .then()
                         .spec(response204));
 
