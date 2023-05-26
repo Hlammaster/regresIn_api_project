@@ -4,5 +4,5 @@ import lombok.Data;
 
 @Data
 public class UserModel {
-  private   String name, password, email, job;
+    private String name, password, email, job;
 }
