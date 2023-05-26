@@ -1,11 +1,11 @@
 package tests;
 
-import io.restassured.http.ContentType;
+import models.ResponseModel;
 import models.UserModel;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static io.restassured.RestAssured.given;
-import static io.restassured.RestAssured.requestSpecification;
 import static org.hamcrest.Matchers.is;
 import static specs.Specs.*;
 
@@ -16,14 +16,16 @@ public class RegistrationTests {
         UserModel userModel = new UserModel();
         userModel.setEmail("eve.holt@reqres.in");
         userModel.setPassword("pistol");
+        ResponseModel response =
         given(requestSpec)
                 .body(userModel)
                 .when()
                 .post("/register")
                 .then()
                 .spec(response200)
-                .body("id", is(4))
-                .body("token", is("QpwL5tke4Pnpja7X4"));
+                .extract().as(ResponseModel.class);
+        assertThat(response.getToken()).isEqualTo("QpwL5tke4Pnpja7X4");
+
 
 
     }

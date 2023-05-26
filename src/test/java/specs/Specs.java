@@ -15,7 +15,8 @@ public class Specs {
             .log().uri()
             .log().body()
             .contentType(ContentType.JSON)
-            .baseUri("https://reqres.in/api");
+            .baseUri("https://reqres.in")
+            .basePath("/api");
 
     public static ResponseSpecification response200 = new ResponseSpecBuilder()
             .log(LogDetail.STATUS)
