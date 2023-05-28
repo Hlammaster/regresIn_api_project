@@ -1,4 +1,4 @@
-<h1 >Демопроект автоматизации тестирования API на <a href="https://reqres.in/">reqres.in</a></h1>
+<h1 >Проект по автоматизации тестирования API для сайта <a href="https://reqres.in/">reqres.in</a></h1>
 
 ![WB_logo.jpg](media/logo/reqres_logo.png)
 
@@ -56,11 +56,11 @@ gradle clean test
 
 > Для запуска необходимо нажать "Собрать сейчас".
 
-<a href="https://jenkins.autotests.cloud/job/AD_demo_api_reqres/"><img src="media/screenshots/JenkinsSborka.png" alt="Jenkins"/></a>
+<a href="https://jenkins.autotests.cloud/job/AD_demo_api_reqres/"><img src="media/screenshots/jenkins.jpg" alt="Jenkins"/></a>
 
 > При клике на сборку после завершения можно увидеть артефакты запуска и полезные ссылки для более детального изучения прогона.
 
-<a href="https://jenkins.autotests.cloud/job/AD_demo_api_reqres/"><img src="media/screenshots/JenkinsIntegrations.png" alt="Jenkins"/></a>
+<a href="https://jenkins.autotests.cloud/job/AD_demo_api_reqres/"><img src="media/screenshots/sborka.jpg" alt="Jenkins"/></a>
 </p>
 
 <a id="telegram"></a>
@@ -70,16 +70,16 @@ gradle clean test
 
 > С помощью настроенного бота после завершения прогона в Jenkins поступают уведомления в Telegram.
 
-<img title="telegram bot" src="media/screenshots/TelegramBotAPI.png">
+<img title="telegram bot" src="media/screenshots/tele.jpg">
 </p>
 
 <a id="allure"></a>
-## <img src="media/logo/Allure.svg" width="25" height="25"/></a> [Allure Report](https://jenkins.autotests.cloud/job/AD_demo_api_reqres/5/allure/) отчеты
+## <img src="media/logo/Allure.svg" width="25" height="25"/></a> [Allure Report](https://jenkins.autotests.cloud/job/18-johnnyhlammaster-regresInFinal/8/allure/) отчеты
 
 ### Основное окно
 
 <p align="center">
-<img title="Allure Dashboard" src="media/screenshots/AllureDashboard.png">
+<img title="Allure Dashboard" src="media/screenshots/dashboard.jpg">
 </p>
 
 ### Отчеты по тестам
@@ -88,28 +88,28 @@ gradle clean test
 
 > В отчете по тестам присутствует развернутая информация по запросам и ответам.
 
-<img title="Allure Tests" src="media/screenshots/AllureWithInfo.png">
+<img title="Allure Tests" src="media/screenshots/testcase.jpg">
 </p>
 
 <a id="allure-testops"></a>
-## <img src="media/logo/Allure_TO.svg" width="25" height="25"/></a> Интеграция с [Allure TestOps](https://allure.autotests.cloud/project/1933/dashboards)
+## <img src="media/logo/Allure_TO.svg" width="25" height="25"/></a> Интеграция с [Allure TestOps](https://allure.autotests.cloud/project/2424/dashboards)
 
 ### Основное окно
 
 <p align="center">
-<img title="Allure TestOps" src="media/screenshots/Dashboard_TO.png">
+<img title="Allure TestOps" src="media/screenshots/testops.jpg">
 </p>
 
-### Дерево тестов с разделением по фичам
+### Тест кейсы
 
 <p align="center">
-<img title="Allure TestOps" src="media/screenshots/TreeByFeatures_TO.png">
+<img title="Allure TestOps" src="media/screenshots/testcase2.jpg">
 </p>
 
 <a id="jira"></a>
-## <img src="media/logo/Jira.svg" width="25" height="25"/></a> Интеграция с [Jira](https://jira.autotests.cloud/browse/HOMEWORK-553)
+## <img src="media/logo/Jira.svg" width="25" height="25"/></a> Интеграция с [Jira](https://jira.autotests.cloud/browse/HOMEWORK-713)
 
 <p align="center">
-<img title="Jira" src="media/screenshots/JiraAPI.png">
+<img title="Jira" src="media/screenshots/jira.jpg">
 </p>
 
