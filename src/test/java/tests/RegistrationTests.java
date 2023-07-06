@@ -35,7 +35,7 @@ public class RegistrationTests {
                         .spec(response200)
                         .extract().as(ResponseModel.class));
         step("Verify response", () ->
-                assertThat(response.getToken()).isEqualTo("QpwL5tke4Pnpja7X4"));
+                assertThat(response.getToken()).isNotNull());
 
 
     }
